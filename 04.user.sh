@@ -58,7 +58,7 @@ validate(){
     npm install  &>> $LOGFILE
     validate $? "installing dependencys"
 
-    Cp /home/centos/newrobo /etc/systemd/system/user.service
+    Cp /home/centos/newrobo/user.service /etc/systemd/system/user.service
     validate $? "copying user service"
 
     systemctl daemon-reload &>> $LOGFILE
