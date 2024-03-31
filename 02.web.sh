@@ -28,28 +28,30 @@ validate(){
     else 
         echo -e "$G you're a root user $N"
 
-    dnf install nginx -y
+    dnf install nginx -y &>> $LOGFILE
     validate $? "installing nginx"
 
-    systemctl enable nginx
+    systemctl enable nginx &>> $LOGFILE
     validate $? "enableing nginx"
 
-    systemctl start nginx
+    systemctl start nginx &>> $LOGFILE
     validate $? "starting nginx"
 
-    rm -rf /usr/share/nginx/html/*
+    rm -rf /usr/share/nginx/html/* &>> $LOGFILE
     validate $? "removing nginx html files"
 
-    curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+    curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFILE
     validate $? "copying roboshop"
 
-    cd /usr/share/nginx/html
+    cd /usr/share/nginx/html &>> $LOGFILE
     validate $? "changing directory"
 
-    unzip -o /tmp/web.zip
+    unzip -o /tmp/web.zip &>> $LOGFILE
     validate $? "unzipping"
 
-    systemctl restart nginx 
+    cp /home/centos/newrobo/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
+
+    systemctl restart nginx  &>> $LOGFILE
     validate $? "restarting nginx"
 
     fi
