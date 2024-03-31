@@ -43,28 +43,28 @@ validate(){
     mkdir /app &>> $LOGFILE
     validate $? "creating app director"
 
-    curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+    curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
     validate $? "downloading code"
 
-    cd /app 
+    cd /app  &>> $LOGFILE
     validate $? "changing to app directory"
 
-    unzip /tmp/user.zip
+    unzip /tmp/user.zip &>> $LOGFILE
     validate $? "unzipping"
 
-    cd /app 
+    cd /app  &>> $LOGFILE
     validate $? "changing to app directory"
 
-    npm install 
+    npm install  &>> $LOGFILE
     validate $? "installing dependencys"
 
-    systemctl daemon-reload
+    systemctl daemon-reload &>> $LOGFILE
     validate $? "daemon-reloading"
 
-    systemctl enable user 
+    systemctl enable user  &>> $LOGFILE
     validate $? "enable user"
 
-    systemctl start user
+    systemctl start user &>> $LOGFILE
     validate $? "starting user"
 
     cp /home/centos/newrobo/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
@@ -73,7 +73,7 @@ validate(){
     dnf install mongodb-org-shell -y &>> $LOGFILE
     validate $? "installing catalogue"
 
-    mongo --host mongodb.bigmatrix.in </app/schema/user.js
+    mongo --host mongodb.bigmatrix.in </app/schema/user.js &>> $LOGFILE
     validate $? "starting user"
 
     fi
