@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-ID=$(id-u)
+ID=$(id -u)
 
 TIMESTAMP=$(date +%F-%M-%S)
 LOGFILE=/tmp/$0-$TIMESTAMP.log 
@@ -14,21 +14,21 @@ validate(){
 
     if [ $1 -ne  0 ]
     then 
-        echo "$2...........$R faild $N"
+        echo -e "$2...........$R faild $N"
     else 
-        echo "$2............$G success $N"
+        echo  -e "$2............$G success $N"
     fi
 }
 
 
     if [ $ID -ne 0 ]
     then 
-        echo "$R you're not a root user $N"
+        echo -e  "$R you're not a root user $N"
     else 
-        echo "$G you're a root user $N"
+        echo -e "$G you're a root user $N"
     fi
 
-    cp 
+    
     dnf install mongodb-org -y 
     validate $? "installing mongo-shell"
 
