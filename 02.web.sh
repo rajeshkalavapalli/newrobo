@@ -50,6 +50,7 @@ validate(){
     validate $? "unzipping"
 
     cp /home/centos/newrobo/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
+    validate $? "copying config"
 
     systemctl restart nginx  &>> $LOGFILE
     validate $? "restarting nginx"
