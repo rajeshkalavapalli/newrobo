@@ -29,8 +29,10 @@ validate(){
         echo -e "$G you're a root user $N"
     fi
 
-    
-    dnf install mongodb-org -y 
+    cp /home/centos/newrobo/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+    validate $? "copying mango.repo" 
+
+    dnf install mongodb-org -y  &>> $LOGFILE
     validate $? "installing mongo-shell"
 
 
