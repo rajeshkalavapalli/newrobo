@@ -40,7 +40,7 @@ validate(){
     useradd roboshop &>> $LOGFILE
     validate $? "user adding"
 
-    mkdir /app &>> $LOGFILE
+    mkdir -p /app &>> $LOGFILE
     validate $? "creating app director"
 
     curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
@@ -49,7 +49,7 @@ validate(){
     cd /app  &>> $LOGFILE
     validate $? "changing to app directory"
 
-    unzip /tmp/user.zip &>> $LOGFILE
+    unzip -o /tmp/user.zip &>> $LOGFILE
     validate $? "unzipping"
 
     cd /app  &>> $LOGFILE
