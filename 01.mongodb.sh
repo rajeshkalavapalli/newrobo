@@ -24,6 +24,7 @@ validate(){
     if [ $ID -ne 0 ]
     then 
         echo -e  "$R you're not a root user $N"
+        exit 1
     else 
         echo -e "$G you're a root user $N"
     fi
