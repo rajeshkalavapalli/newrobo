@@ -58,11 +58,14 @@ validate(){
     npm install  &>> $LOGFILE
     validate $? "installing dependencys"
 
+    Cp /home/centos/newrobo /etc/systemd/system/user.service
+    validate $? "copying user service"
+
     systemctl daemon-reload &>> $LOGFILE
     validate $? "daemon-reloading"
 
     systemctl enable user  &>> $LOGFILE
-    validate $? "enable user"
+    validate $? "enableing  user"
 
     systemctl start user &>> $LOGFILE
     validate $? "starting user"
