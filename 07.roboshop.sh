@@ -15,6 +15,9 @@ do
         INSTANCE_TYPE="t2.micro"
     fi
 
-    aws ec2 run-instances --image-id ami-0f3c7d07486cad139 --instance-type $INSTANCE_TYPE --security-group-ids sg-0ecc0d38b1974ad3f --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" 
-
+    # Launch instance and check for errors
+    if ! aws ec2 run-instances --image-id "$AMI" --instance-type "$INSTANCE_TYPE" --security-group-ids "$SE_ID" --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]"; then
+        echo "Failed to launch instance for $i"
+        exit 1
+    fi
 done
