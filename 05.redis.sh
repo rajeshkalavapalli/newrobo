@@ -40,8 +40,8 @@ validate(){
         sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>> $LOGFILE
         validate $? "remote acces redis"
 
-        sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOGFILE
-        validate $? "remote acces redis"
+        # sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOGFILE
+        # validate $? "remote acces redis"
 
         systemctl enable redis &>> $LOGFILE
         validate $? "enable  redis "
