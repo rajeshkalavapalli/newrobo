@@ -4,7 +4,7 @@ AMI=ami-0f3c7d07486cad139 #this keeps on changing
 SG_ID=sg-0ecc0d38b1974ad3f #replace with your SG ID
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
 ZONE_ID=Z07107583SIBMEYCNYDA6 # replace your zone ID
-DOMAIN_NAME="bigmatrix.in"
+DOMAIN_NAME="daws76s.online"
 
 for i in "${INSTANCES[@]}"
 do
@@ -25,7 +25,7 @@ do
     {
         "Comment": "Creating a record set for cognito endpoint"
         ,"Changes": [{
-        "Action"              : "CREATE"
+        "Action"              : "UPSERT"
         ,"ResourceRecordSet"  : {
             "Name"              : "'$i'.'$DOMAIN_NAME'"
             ,"Type"             : "A"
@@ -38,5 +38,3 @@ do
     }
         '
 done
-
-
