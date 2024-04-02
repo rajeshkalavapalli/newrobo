@@ -1,3 +1,4 @@
+#creating roboshop instance through shell 
 #!/bin/bash
 
 AMI=ami-0f3c7d07486cad139 #this keeps on changing
